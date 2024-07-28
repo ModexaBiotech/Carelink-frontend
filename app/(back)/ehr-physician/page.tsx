@@ -5,7 +5,7 @@ import Sidebar from '@/components/Sidebar';
 import RightSidebar from '@/components/RightSidebar';
 import SearchBar from '@/components/EHR/SearchBar';
 import SearchResults from '@/components/EHR/SearchResults';
-import PatientDetails from '@/components/EHR/PatientDetails';
+// import PatientDetails from '@/components/EHR/PatientDetails';
 import { Result } from '@/types/types';
 
 interface Notification {
@@ -541,7 +541,8 @@ const EHRPage = () => {
                 <SearchResults query={query} results={results} onPatientClick={handlePatientClick} />
               </div>
             ) : (
-              <PatientDetails patient={selectedPatient} onBack={() => setSelectedPatient(null)} />
+              //<PatientDetails patient={selectedPatient} onBack={() => setSelectedPatient(null)} />
+              <h1>Hello</h1>
             )}
           </div>
         </div>
