@@ -1,5 +1,4 @@
 "use client"; 
-// Back to the root
 import React, { useState } from 'react';
 import Sidebar from '@/components/Nurse/Sidebar';
 import RightSidebar from '@/components/RightSidebar';
