@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import RightSidebar from '@/components/RightSidebar';
+import Image from 'next/image';
 
 const forumData = {
   "male-fertility": {
@@ -45,7 +46,7 @@ const ForumDetailPage: React.FC = () => {
         <div className="p-6">
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold">{forum.title}</h1>
-            <img src={forum.image} alt={forum.title} className="w-full rounded-lg mt-4" />
+            <Image src={forum.image} alt={forum.title} className="w-full rounded-lg mt-4" />
             <p className="mt-4">{forum.description}</p>
             <p className="mt-2">Members: {forum.members}</p>
             <p className="mt-2">Posts: {forum.posts}</p>

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const RightSidebar = () => {
     return (
       <div className="bg-white w-80 h-screen p-4 shadow-md">
@@ -30,14 +32,14 @@ const RightSidebar = () => {
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-2">Chats</h2>
           <div className="flex items-center mb-2">
-            <img src="/path/to/chat-icon.jpg" alt="Chat" className="w-10 h-10 rounded-full mr-4" />
+            <Image src="/path/to/chat-icon.jpg" alt="Chat" className="w-10 h-10 rounded-full mr-4" />
             <div>
               <p>St. James Seminary</p>
               <p className="text-gray-600 text-sm">Hahahaha...</p>
             </div>
           </div>
           <div className="flex items-center">
-            <img src="/path/to/chat-icon.jpg" alt="Chat" className="w-10 h-10 rounded-full mr-4" />
+            <Image src="/path/to/chat-icon.jpg" alt="Chat" className="w-10 h-10 rounded-full mr-4" />
             <div>
               <p>Mary</p>
               <p className="text-gray-600 text-sm">Hahahaha...</p>
