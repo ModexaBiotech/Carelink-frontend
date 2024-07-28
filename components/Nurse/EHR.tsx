@@ -1,5 +1,4 @@
 "use client"; 
-
 import React, { useState } from 'react';
 import Sidebar from '@/components/Nurse/Sidebar';
 import RightSidebar from '@/components/RightSidebar';
@@ -7,6 +6,7 @@ import SearchBar from '@/components/EHR/SearchBar';
 import SearchResults from '@/components/EHR/SearchResults';
 import PatientDetails from './PatientDetails';
 import { Result } from '@/types/types'; 
+
 
 
 

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface CallCardProps {
   organizationPhoto: string;
@@ -52,7 +53,7 @@ const CallCard: React.FC<CallCardProps> = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <img src={organizationPhoto} alt="Organization" className="w-16 h-16 rounded-full border-2 border-gray-300" />
+      <Image src={organizationPhoto} alt="Organization" className="w-16 h-16 rounded-full border-2 border-gray-300" />
       <div className="flex-1">
         <p className="text-xl font-bold">{name}</p>
         <p className="text-gray-500">{organization}</p>

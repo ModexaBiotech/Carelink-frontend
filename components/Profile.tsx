@@ -1,5 +1,6 @@
 "use client"; 
 
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 
@@ -22,7 +23,7 @@ const Profile: React.FC<ProfileProps> = ({ doctorName }) => {
     <div className="relative">
       <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md cursor-pointer" onClick={toggleDropdown}>
         <div className="flex items-center">
-          <img src="https://via.placeholder.com/150" alt={doctorName} className="w-12 h-12 rounded-full mr-4" />
+          <Image src="https://via.placeholder.com/150" alt={doctorName} className="w-12 h-12 rounded-full mr-4" />
           <div>
             <h2 className="font-bold text-gray-900">{doctorName}</h2>
           </div>
