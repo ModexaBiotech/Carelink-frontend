@@ -21,7 +21,6 @@ const GreetingCard: React.FC<GreetingCardProps> = ({ name, theme }) => {
   const [quote, setQuote] = useState<string>('');
 
   useEffect(() => {
-   
     const timer = setInterval(() => setDate(new Date()), 60000); // Update every minute
 
     // Fetch weather and quote data
@@ -38,7 +37,6 @@ const GreetingCard: React.FC<GreetingCardProps> = ({ name, theme }) => {
     // Cleanup timer on component unmount
     return () => clearInterval(timer);
   }, []);
-
 
   const formattedDate = date.toLocaleDateString();
 

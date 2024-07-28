@@ -7,7 +7,7 @@ interface NursesNotesProps {
 const NursesNotes: React.FC<NursesNotesProps> = ({ notes }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 mb-4">
-      <h2 className="text-xl font-bold mb-4">Nurse's Notes</h2>
+      <h2 className="text-xl font-bold mb-4">Nurse&#39;s Notes</h2>
       <textarea
         value={notes}
         readOnly

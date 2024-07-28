@@ -10,8 +10,22 @@ import { SelectUser } from "../formInputs/SelectUser";
 import GoogleSignIn from "../formInputs/GoogleSignIn";
 // import toast from "react-hot-toast";
 
-export default function SignupForm({ role = "SERVICE_PROVIDERS", plan }: { role?: UserRole; plan?: string }) {
+async function createUser(data: RegisterInputProps): Promise<void> {
+    // Simulate an API call to create a user
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // Simulate success or failure
+            const success = true;
+            if (success) {
+                resolve();
+            } else {
+                reject(new Error("Failed to create user"));
+            }
+        }, 1000);
+    });
+}
 
+export default function SignupForm({ role = "SERVICE_PROVIDERS", plan }: { role?: UserRole; plan?: string }) {
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState('');
     const { register, handleSubmit, watch, formState: { errors }, setFocus } = useForm<RegisterInputProps>();
@@ -26,13 +40,12 @@ export default function SignupForm({ role = "SERVICE_PROVIDERS", plan }: { role?
         } else if (errors.confirmPassword) {
             setFocus("confirmPassword");
         }
-    }, [errors]);
+    }, [errors, setFocus]); // Added setFocus to the dependency array
 
     async function onSubmit(data: RegisterInputProps) {
         setIsLoading(true);
         data.role = role;
         try {
-            // Replace with actual API call
             await createUser(data);
             setMessage('Account created successfully!');
         } catch (error) {

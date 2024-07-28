@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface Physician {
   name: string;
@@ -12,15 +12,7 @@ const PhysicianSearch: React.FC<PhysicianSearchProps> = ({ setPhysician }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Physician[]>([]);
 
-  useEffect(() => {
-    if (searchQuery.length > 1) {
-      handleSearch();
-    } else {
-      setSearchResults([]);
-    }
-  }, [searchQuery]);
-
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     const results: Physician[] = [
       { name: 'Dr. Lorant Amo Kodieh' },
       { name: 'Dr. Asante Samuel' },
@@ -35,7 +27,15 @@ const PhysicianSearch: React.FC<PhysicianSearchProps> = ({ setPhysician }) => {
       physician.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setSearchResults(filteredResults);
-  };
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (searchQuery.length > 1) {
+      handleSearch();
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery, handleSearch]);
 
   return (
     <div className="mb-2">
