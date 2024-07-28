@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { BiHomeAlt } from 'react-icons/bi';
 import { HiUsers, HiOutlineChatAlt2, HiOutlineCalendar, HiOutlineLogout } from 'react-icons/hi';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Sidebar({ onCollapseChange }: { onCollapseChange: (collapsed: boolean) => void }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -32,7 +33,7 @@ export default function Sidebar({ onCollapseChange }: { onCollapseChange: (colla
       onMouseLeave={handleMouseLeave}
     >
       <div className="flex items-center justify-center h-16 bg-[#0b2047]">
-        <img src="/logo.jpg" alt="Logo" className="h-12 w-12" />
+        <Image src="/logo.jpg" alt="Logo" className="h-12 w-12" />
       </div>
       <nav className="flex-1 p-4">
         <ul>

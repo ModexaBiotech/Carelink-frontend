@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 const RightSidebar = () => {
     return (
       <div className="bg-white w-80 h-screen p-4 shadow-md">
         <div className="flex items-center mb-6">
-          <img
+          <Image
             src="/path/to/profile-pic.jpg"
             alt="Profile"
             className="w-10 h-10 rounded-full mr-4"
