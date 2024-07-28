@@ -1,4 +1,4 @@
-// PreviousPrescriptions.tsx
+
 import React from 'react';
 import { Prescription } from '@/types/types';
 
