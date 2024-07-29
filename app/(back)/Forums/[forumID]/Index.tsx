@@ -7,28 +7,25 @@ import RightSidebar from '@/components/RightSidebar';
 import Image from 'next/image';
 
 interface Notification {
-    message: string;
-    time: string;
-    type: 'doctor' | 'forum' | 'other';
-    profileName: string;
-  
-  }
-  
-  interface Note {
+  message: string;
+  time: string;
+  type: 'doctor' | 'forum' | 'other';
+  profileName: string;
+}
+
+interface Note {
   id: string;
   content: string;
   createdAt: string;
-  
-  }
-  
-  interface LoginInfo {
+}
+
+interface LoginInfo {
   loginAs: string;
   userType: string;
   organization: string;
   loginTime: string;
   lastLogin: string;
-  }
-  
+}
 
 const forumData = {
   "male-fertility": {
@@ -52,20 +49,23 @@ const ForumDetailPage: React.FC = () => {
   const router = useRouter();
   const { forumId } = router.query;
 
+  // Initialize states
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [loginInfo, setLoginInfo] = useState<LoginInfo>({
+    loginAs: "Jane Doe",
+    userType: "Nurse",
+    organization: "St. James Seminary SHS",
+    loginTime: "2024-07-24T08:30:00Z", // Placeholder date
+    lastLogin: "2024-07-23T18:00:00Z" // Placeholder date
+  });
+
+  // Check forumId and fetch forum data
   if (!forumId || typeof forumId !== 'string') {
     return <div>Forum not found</div>;
   }
 
   const forum = forumData[forumId as keyof typeof forumData];
-  const [notifications, setNotifications] = useState([]);
-    const [notes, setNotes] = useState([]);
-    const [loginInfo, setLoginInfo] = useState({
-      loginAs: "Jane Doe",
-      userType: "Nurse",
-      organization: "St. James Seminary SHS",
-      loginTime: "2024-07-24T08:30:00Z", // Placeholder date
-      lastLogin: "2024-07-23T18:00:00Z" // Placeholder date
-    });
 
   if (!forum) {
     return <div>Forum not found</div>;
@@ -79,14 +79,14 @@ const ForumDetailPage: React.FC = () => {
         <div className="p-6">
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold">{forum.title}</h1>
-            <Image src={forum.image} alt={forum.title} className="w-full rounded-lg mt-4" />
+            <Image src={forum.image} alt={forum.title} className="w-full rounded-lg mt-4" width={500} height={300} />
             <p className="mt-4">{forum.description}</p>
             <p className="mt-2">Members: {forum.members}</p>
             <p className="mt-2">Posts: {forum.posts}</p>
           </div>
         </div>
       </div>
-      <RightSidebar notifications={notifications}  loginInfo={loginInfo} />
+      <RightSidebar notifications={notifications} loginInfo={loginInfo} />
     </div>
   );
 };
