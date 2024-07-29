@@ -4,11 +4,10 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "ufts.io"
+                hostname: "**", // Allow all HTTPS domains. Use specific domains in production.
             },
         ],
     },
 };
-
 
 export default nextConfig;

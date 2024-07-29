@@ -1,4 +1,3 @@
-// components/Sessions/IncomingRequests.tsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -14,9 +13,17 @@ interface IncomingRequestsProps {
 const IncomingRequests: React.FC<IncomingRequestsProps> = ({ onAccept, onDecline }) => {
   const [requests, setRequests] = useState<any[]>([]);
   const [showNotification, setShowNotification] = useState(false);
-  const [sound] = useState(new Audio('/notification-sound.mp3'));
+  const [sound, setSound] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    // Audio instance only on the client-side
+    const audio = new Audio('/notification-sound.mp3');
+    setSound(audio);
+  }, []);
+
+  useEffect(() => {
+    if (!sound) return; // Ensure sound is defined before using it
+
     // Simulate fetching incoming requests
     const interval = setInterval(() => {
       const newRequest = {
@@ -60,7 +67,6 @@ const IncomingRequests: React.FC<IncomingRequestsProps> = ({ onAccept, onDecline
         requests.map((request, index) => (
           <CallCard
             key={index}
-            organizationPhoto={request.organizationPhoto}
             name={request.name}
             organization={request.organization}
             age={request.age}

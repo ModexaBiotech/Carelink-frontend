@@ -3,10 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import Image from 'next/image';
 
 interface CallCardProps {
-  organizationPhoto: string;
   name: string;
   organization: string;
   age: number;
@@ -19,7 +17,6 @@ interface CallCardProps {
 }
 
 const CallCard: React.FC<CallCardProps> = ({
-  organizationPhoto,
   name,
   organization,
   age,
@@ -53,7 +50,10 @@ const CallCard: React.FC<CallCardProps> = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Image src={organizationPhoto} alt="Organization" className="w-16 h-16 rounded-full border-2 border-gray-300" />
+      <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-gray-700">
+        {/* Placeholder for the image */}
+        <span>No Image</span>
+      </div>
       <div className="flex-1">
         <p className="text-xl font-bold">{name}</p>
         <p className="text-gray-500">{organization}</p>
