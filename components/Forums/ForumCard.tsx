@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useAppState } from './useAppState';
+import Image from 'next/image';
 
 interface ForumCardProps {
   id: string;
@@ -21,7 +22,7 @@ const ForumCard: React.FC<ForumCardProps> = ({ id, title, posts, members, image,
       className="cursor-pointer w-full h-60 border border-gray-200 rounded-lg overflow-hidden text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
     >
       <div className="relative h-full">
-        <img 
+        <Image 
           src={image} 
           alt={title} 
           className="w-full h-full object-cover"

@@ -22,9 +22,11 @@ export function SelectUser() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Select</SelectLabel>
-          <SelectItem value="apple">School</SelectItem>
-          <SelectItem value="banana">Service provider</SelectItem>
+          <SelectItem value="apple">Organization</SelectItem>
+          <SelectItem value="banana">Physician</SelectItem>
           <SelectItem value="blueberry">Admin</SelectItem>
+          <SelectItem value="kelewele">Nurse</SelectItem>
+          <SelectItem value="tigernuts">Physician Assistant</SelectItem>
          
         </SelectGroup>
       </SelectContent>
