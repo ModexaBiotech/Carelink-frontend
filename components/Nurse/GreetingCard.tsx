@@ -49,7 +49,7 @@ const GreetingCard: React.FC<GreetingCardProps> = ({ name, theme }) => {
     <div className={`${themeClasses} p-8 rounded-lg shadow-lg w-full flex flex-col items-start`}>
       <h1 className="text-4xl font-extrabold mb-4">Hello, {name}!</h1>
       <p className="text-lg mb-2">Welcome to your dashboard. Have a great day!</p>
-      <p className="text-md mb-2">Today's Date: {formattedDate}</p>
+      <p className="text-md mb-2">Today&#39;s Date: {formattedDate}</p>
       <p className="text-md mb-2">Current Weather: {weather}</p>
       <blockquote className="text-md italic mt-4 border-l-4 border-white pl-4">{quote}</blockquote>
     </div>
