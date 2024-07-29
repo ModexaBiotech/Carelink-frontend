@@ -4,7 +4,6 @@ import GreetingCard from '@/components/Nurse/GreetingCard';
 import Overview from '@/components/Nurse/OverviewCard';
 import EducationalContent from '@/components/Dasboard/EducationalContent';
 import { PatientProvider } from '@/components/Nurse/PatientContext';
-import MedicalSessionDetails from '@/components/Nurse/MedicalSessionDetails';
 import ConsultationProcess from '@/components/Nurse/ConsultationProcess';
 import VideoCall from '@/components/Nurse/VideoCall';
 import SearchPatientPopup from '@/components/Nurse/SearchPatientPopup';
@@ -75,9 +74,6 @@ const DashboardNurse = () => {
           </div>
           <div className="flex justify-center gap-4 mt-4">
         
-          {currentView === 'patientDetails' && (
-            <PatientDetailsPage onProceed={() => setCurrentView('medicalSessionDetails')} />
-          )}
           {currentView === 'consultationProcess' && (
             <ConsultationProcess setStage={(stage) => setCurrentView(stage === 'VIDEO_CALL' ? 'videoCall' : 'consultationProcess')} />
           )}
