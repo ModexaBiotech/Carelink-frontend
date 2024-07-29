@@ -160,3 +160,10 @@ export interface LoginInputProps {
   school: string;
   graduation: string;
 }
+
+export interface RegisterInputProps {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  role?: string; // Add other properties as needed
+}

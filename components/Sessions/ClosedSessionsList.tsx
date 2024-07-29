@@ -26,7 +26,7 @@ const ClosedSessionsList: React.FC<ClosedSessionsListProps> = ({ sessions }) => 
       {sessions.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-64 text-center text-gray-500">
           <MdSentimentDissatisfied size={50} className="mb-4" />
-          <p className="text-lg">You don't have any finalized sessions yet!</p>
+          <p className="text-lg">You don&#39;t have any finalized sessions yet!</p>
         </div>
       ) : (
         <>
