@@ -1,11 +1,10 @@
-"use client";
 import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import RightSidebar from '@/components/RightSidebar';
 import Tabs from '@/components/Tabs';
 import Table from '@/components/Table';
-import StatsCard from '@/components/Statscard';
+import StatsCard from '@/components/StatCard';
 import { FaCalendarCheck, FaClock, FaStar } from 'react-icons/fa';
 
 const SessionsPage: React.FC = () => {
@@ -17,7 +16,29 @@ const SessionsPage: React.FC = () => {
   ]);
 
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  
+  // Define notifications and loginInfo
+  const notifications = [
+    { id: 1, message: 'New session scheduled', time: '10:00 AM' },
+    { id: 2, message: 'Reminder: Check patient records', time: '12:00 PM' },
+  ];
 
+  interface LoginInfo {
+    loginAs: string;
+    userType: string;
+    organization: string;
+    loginTime: string;
+    lastLogin: string;
+  }
+  
+
+  const [loginInfo, setLoginInfo] = useState<LoginInfo>({
+    loginAs: "Jane Doe",
+    userType: "Nurse",
+    organization: "St. James Seminary SHS",
+    loginTime: "2024-07-24T08:30:00Z", // Placeholder date
+    lastLogin: "2024-07-23T18:00:00Z" // Placeholder date
+  });
   const handleCollapseChange = (collapsed: boolean) => {
     setIsSidebarCollapsed(collapsed);
   };
@@ -31,7 +52,6 @@ const SessionsPage: React.FC = () => {
     { name: 'Justina Abbey', organization: 'FGSTS', date: '08-08-24', time: '13:00', mode: 'Video' },
   ];
 
-  // Simulate fetching data from backend
   useEffect(() => {
     const fetchStats = () => {
       const newStats = [
@@ -84,7 +104,7 @@ const SessionsPage: React.FC = () => {
         </div>
         <div className="mt-4">{renderContent()}</div>
       </div>
-      <RightSidebar />
+      <RightSidebar notifications={notifications} loginInfo={loginInfo} />
     </div>
   );
 };

@@ -1,16 +1,21 @@
-"use client";  // Add this directive at the top of your component file
+"use client";
 
 import React from 'react';
-import { FaUserMd, FaPhone, FaComments, FaVideo } from 'react-icons/fa';
+import { IconType } from 'react-icons';
 
-const stats = [
-  { label: 'Total Patients', value: 250, icon: FaUserMd, color: 'bg-green-200', textColor: 'text-green-800' },
-  { label: 'Audio Calls', value: 250, icon: FaPhone, color: 'bg-red-200', textColor: 'text-red-800' },
-  { label: 'Chat Sessions', value: 250, icon: FaComments, color: 'bg-yellow-200', textColor: 'text-yellow-800' },
-  { label: 'Video Calls', value: 250, icon: FaVideo, color: 'bg-purple-200', textColor: 'text-purple-800' },
-];
+interface Stat {
+  label: string;
+  value: number | string; // Updated to accept both number and string
+  icon: IconType;
+  color: string;
+  textColor: string;
+}
 
-const StatsCard = () => {
+interface StatsCardProps {
+  stats: Stat[];
+}
+
+const StatsCard: React.FC<StatsCardProps> = ({ stats }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6">
       {stats.map((stat, index) => {
