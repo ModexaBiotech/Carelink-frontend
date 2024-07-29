@@ -125,7 +125,6 @@ export default function LoginForm() {
           <div>
             <SubmitButton title="Login"
               loadingTitle="Logging in please wait...."
-              login={""}
               isLoading={isLoading} />
           </div>
         </form>

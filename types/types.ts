@@ -159,6 +159,8 @@ export interface LoginInputProps {
   // Define your form fields here
   school: string;
   graduation: string;
+  email: string;
+  password: string;
 }
 
 export interface RegisterInputProps {
