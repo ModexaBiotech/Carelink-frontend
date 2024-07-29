@@ -22,3 +22,6 @@ This is for all the text in the app. A little notes area for making it better
   }
   
   
+
+//OTP page 
+
