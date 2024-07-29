@@ -56,7 +56,7 @@ const ScheduleCalendar = () => {
           >
             <span className="font-semibold text-sm">{weekDays[date.getDay()]}</span>
             <span className="text-lg font-bold">{date.getDate()}</span>
-            <div className={`w-2 h-2 rounded-full mt-2 ${date.getDay() === selectedDate.getDay() ? 'bg-white' : 'bg-green-900'}`}></div>
+            <div className={`w-4 h-4 rounded-full mt-2 ${date.getDay() === selectedDate.getDay() ? 'bg-white' : 'bg-green-900'}`}></div>
           </div>
         ))}
       </div>
