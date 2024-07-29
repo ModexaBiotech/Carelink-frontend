@@ -13,7 +13,6 @@ export interface Test {
   addedBy: string;
   time: string;
   date: string;
-  
 }
 
 export interface Prescription {
@@ -27,43 +26,6 @@ export interface Prescription {
   quantity: string;
   instructions: string;
   date: string;
-}
-
-export interface Result {
-  id: number;
-  name: string;
-  studentID: string;
-  indexNo: string;
-  class: string;
-  age: number;
-  sex: string;
-  dob: string;
-  bloodGroup: string;
-  allergies: string;
-  status: string;
-  contact: string;
-  email: string;
-  emergencyContactName: string;
-  emergencyContactRelation: string;
-  emergencyContactNumber: string;
-  emergencyContactEmail: string;
-  vitals: Vital[][];
-  tests: Test[][];
-  prescriptions: Prescription[];
-  consultationNotes: string[];
-}
-// types.ts
-export interface Prescription {
-  drugName: string;
-  route: string;
-  frequency: string;
-  dose: string;
-  unit: string;
-  startDate: string;
-  endDate: string;
-  quantity: string;
-  instructions: string;
-  date: string;  // Ensure this field is present
 }
 
 export interface Result {
@@ -97,21 +59,36 @@ export interface CommentProps {
   replies?: CommentProps[];
 }
 
-
 export interface LabOrder {
   id: string;
-  name: string;
-  result: string; 
-  time: string; 
-  // other properties...
+  orderDate: string;
+  orderingPhysician: string;
+  priority: string;
+  specimen: string;
+  testName: string;
+  diagnosis: string;
+  instructions: string;
+  result: string;
+  time: string;
+
 }
 
-export type ReferralOrder = {
-  referralReason: string;
-  referredTo: string;
-  date: string;
-  time: string;
-};
+export interface ReferralOrder {
+  patientName: string;
+  patientId: string;
+  dateOfBirth: string;
+  gender: string;
+  referralDate: string;
+  referringPhysician: string;
+  specialty: string;
+  subSpecialty: string;
+  reasonForReferral: string;
+  clinicalHistory: string;
+  currentMedications: string;
+  locationOfOrganization: string;
+  preferredFacility: string;
+  otherFacility: string;
+}
 
 export interface ClosedSession {
   id: number;
@@ -149,14 +126,13 @@ export interface VitalsData {
   pulse: string;
 }
 
-type Note = {
+export type Note = {
   title: string;
   content: string;
   date: string;
 };
 
 export interface LoginInputProps {
-  // Define your form fields here
   school: string;
   graduation: string;
   email: string;
@@ -167,5 +143,5 @@ export interface RegisterInputProps {
   email: string;
   password: string;
   confirmPassword: string;
-  role?: string; // Add other properties as needed
+  role?: string;
 }

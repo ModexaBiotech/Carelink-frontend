@@ -1,26 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-
-interface ReferralOrder {
-  patientName: string;
-  patientId: string;
-  dateOfBirth: string;
-  gender: string;
-  referralDate: string;
-  referringPhysician: string;
-  specialty: string;
-  subSpecialty: string;
-  reasonForReferral: string;
-  clinicalHistory: string;
-  currentMedications: string;
-  locationOfOrganization: string;
-  preferredFacility: string;
-  otherFacility: string;
-}
+import { ReferralOrder as ReferralOrderType } from '@/types/types';
 
 interface ReferralOrderFormProps {
-  referralOrders: ReferralOrder[];
-  onSave: (newReferralOrders: ReferralOrder[]) => void;
+  referralOrders: ReferralOrderType[];
+  onSave: (newReferralOrders: ReferralOrderType[]) => void;
   patientDetails?: {
     name: string;
     id: string;
@@ -61,7 +45,7 @@ const hospitals: { [key: string]: string[] } = {
 
 const ReferralOrderForm: React.FC<ReferralOrderFormProps> = ({ referralOrders, onSave, patientDetails, loggedInDoctor }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [currentReferralOrders, setCurrentReferralOrders] = useState<ReferralOrder[]>(referralOrders);
+  const [currentReferralOrders, setCurrentReferralOrders] = useState<ReferralOrderType[]>(referralOrders);
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
 
@@ -73,7 +57,7 @@ const ReferralOrderForm: React.FC<ReferralOrderFormProps> = ({ referralOrders, o
     setIsExpanded(!isExpanded);
   };
 
-  const handleInputChange = (index: number, field: keyof ReferralOrder, value: string) => {
+  const handleInputChange = (index: number, field: keyof ReferralOrderType, value: string) => {
     const updatedReferralOrders = [...currentReferralOrders];
     updatedReferralOrders[index][field] = value;
     setCurrentReferralOrders(updatedReferralOrders);

@@ -1,15 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-
-interface LabOrder {
-  orderDate: string;
-  orderingPhysician: string;
-  priority: string;
-  specimenType: string;
-  testCategory: string;
-  diagnosis: string;
-  specialInstructions: string;
-}
+import { LabOrder } from '@/types/types';
 
 interface LabOrderFormProps {
   labOrders: LabOrder[];
@@ -42,13 +33,16 @@ const LabOrderForm: React.FC<LabOrderFormProps> = ({ labOrders, onSave }) => {
     setCurrentLabOrders([
       ...currentLabOrders,
       {
+        id: Math.random().toString(36).substring(2, 15), // Generating a random id
         orderDate: getCurrentDate(),
-        orderingPhysician: 'Dr. John Doe', //  actual logic will go here wai
+        orderingPhysician: 'Dr. John Doe', // Placeholder; replace with actual logic
         priority: '',
-        specimenType: '',
-        testCategory: '',
+        specimen: '',
+        testName: '',
         diagnosis: '',
-        specialInstructions: '',
+        instructions: '',
+        result: '',
+        time: '',
       },
     ]);
   };
@@ -125,9 +119,9 @@ const LabOrderForm: React.FC<LabOrderFormProps> = ({ labOrders, onSave }) => {
                   <option value="Stat">Stat</option>
                 </select>
                 <select
-                  name="specimenType"
-                  value={labOrder.specimenType}
-                  onChange={(e) => handleInputChange(index, 'specimenType', e.target.value)}
+                  name="specimen"
+                  value={labOrder.specimen}
+                  onChange={(e) => handleInputChange(index, 'specimen', e.target.value)}
                   className="p-2 border rounded"
                 >
                   <option value="">Select Specimen Type</option>
@@ -140,14 +134,14 @@ const LabOrderForm: React.FC<LabOrderFormProps> = ({ labOrders, onSave }) => {
                   <option value="N/A">N/A</option>
                 </select>
                 <select
-                  name="testCategory"
-                  value={labOrder.testCategory}
-                  onChange={(e) => handleInputChange(index, 'testCategory', e.target.value)}
+                  name="testName"
+                  value={labOrder.testName}
+                  onChange={(e) => handleInputChange(index, 'testName', e.target.value)}
                   className="p-2 border rounded"
-                  disabled={!labOrder.specimenType}
+                  disabled={!labOrder.specimen}
                 >
                   <option value="">Select Test Category</option>
-                  {labOrder.specimenType && testCategories[labOrder.specimenType]?.map((test) => (
+                  {labOrder.specimen && testCategories[labOrder.specimen]?.map((test) => (
                     <option key={test} value={test}>{test}</option>
                   ))}
                 </select>
@@ -160,10 +154,10 @@ const LabOrderForm: React.FC<LabOrderFormProps> = ({ labOrders, onSave }) => {
                   className="p-2 border rounded"
                 />
                 <textarea
-                  name="specialInstructions"
+                  name="instructions"
                   placeholder="Special Instructions"
-                  value={labOrder.specialInstructions}
-                  onChange={(e) => handleInputChange(index, 'specialInstructions', e.target.value)}
+                  value={labOrder.instructions}
+                  onChange={(e) => handleInputChange(index, 'instructions', e.target.value)}
                   className="p-2 border rounded col-span-2"
                 />
               </div>
