@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useState } from 'react';
 import { BiHomeAlt } from 'react-icons/bi';
 import { HiUsers, HiOutlineChatAlt2, HiOutlineCalendar, HiOutlineLogout } from 'react-icons/hi';
@@ -38,6 +36,8 @@ export default function Sidebar({ onCollapseChange }: { onCollapseChange: (colla
         <Image
           src="/logo.jpg"
           alt="Logo"
+          width={48} 
+          height={48} 
           className="h-12 w-12"
         />
       </div>

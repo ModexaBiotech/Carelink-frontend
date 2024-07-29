@@ -33,7 +33,13 @@ export default function Sidebar({ onCollapseChange }: { onCollapseChange: (colla
       onMouseLeave={handleMouseLeave}
     >
       <div className="flex items-center justify-center h-16 bg-[#0b2047]">
-        <Image src="/logo.jpg" alt="Logo" className="h-12 w-12" />
+      <Image
+          src="/logo.jpg"
+          alt="Logo"
+          width={48} 
+          height={48} 
+          className="h-12 w-12"
+         />
       </div>
       <nav className="flex-1 p-4">
         <ul>
