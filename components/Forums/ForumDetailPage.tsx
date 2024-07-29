@@ -5,7 +5,7 @@ import { useAppState } from './useAppState';
 import { FaArrowLeft, FaImage, FaTimes, FaPlus } from 'react-icons/fa';
 import UserCard from './UserCard';
 import Modal from 'react-modal';
-import { CommentProps } from '@/types/types'; // Import CommentProps
+import { CommentProps } from '@/types/types'; 
 import Image from 'next/image';
 
 const forumData = {
