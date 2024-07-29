@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import RxHx from './Rx';
 import LabOrderForm from './LabOrderForm';
-import ReferralOrderForm from './RefferalForm'; // Correct import
+import ReferralOrderForm from './RefferalForm';
 import { Prescription, LabOrder, ReferralOrder } from '@/types/types';
 
 interface ActionTabProps {
@@ -12,7 +12,7 @@ interface ActionTabProps {
   onSavePrescriptions: (newPrescriptions: Prescription[]) => void;
   onSaveLabOrders: (newLabOrders: LabOrder[]) => void;
   onSaveReferralOrders: (newReferralOrders: ReferralOrder[]) => void;
-  loggedInDoctor: string; // Add this line
+  loggedInDoctor: string;
 }
 
 const ActionTab: React.FC<ActionTabProps> = ({ prescriptions, labOrders, referralOrders, onSavePrescriptions, onSaveLabOrders, onSaveReferralOrders, loggedInDoctor }) => {
@@ -39,7 +39,7 @@ const ActionTab: React.FC<ActionTabProps> = ({ prescriptions, labOrders, referra
         <ReferralOrderForm 
           referralOrders={referralOrders} 
           onSave={onSaveReferralOrders} 
-          loggedInDoctor={loggedInDoctor} // Pass the loggedInDoctor prop here
+          loggedInDoctor={loggedInDoctor} 
         />
       </div>
     </div>

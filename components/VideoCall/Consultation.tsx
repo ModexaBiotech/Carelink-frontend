@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/Sidebar';
 import Vitals from './Vitals';
@@ -8,7 +6,7 @@ import PatientInformation from './PatientInformation';
 import NursesNotes from './NursesNotes';
 import PhysicianNotes from './physicianNotes';
 import ActionTab from './ActionTab';
-import { Prescription } from '@/types/types';
+import { Prescription, LabOrder, ReferralOrder } from '@/types/types';
 import VideoCall from '@/components/VideoCall/VideoCall';
 
 interface FormFields {
@@ -20,21 +18,6 @@ interface FormFields {
   additionalNotes?: string;
   diagnosis: string;
   treatmentPlan: string;
-}
-
-interface LabOrder {
-  testName: string;
-  specimen: string;
-  priority: string;
-  date: string;
-  instructions: string;
-}
-
-interface ReferralOrder {
-  reasonForReferral: string;
-  specialist: string;
-  appointmentDate: string;
-  notes: string;
 }
 
 interface ConsultationProps {
@@ -126,6 +109,7 @@ const Consultation: React.FC<ConsultationProps> = ({ handleConnectionEstablished
                   onSavePrescriptions={setPrescriptions}
                   onSaveLabOrders={setLabOrders}
                   onSaveReferralOrders={setReferralOrders}
+                  loggedInDoctor="Dr. Smith" // Make sure to pass this prop if needed
                 />
               </div>
             </div>
