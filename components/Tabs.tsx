@@ -1,6 +1,11 @@
 import React from 'react';
 
-const TabNavigation = ({ activeTab, setActiveTab }) => {
+interface TabNavigationProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+const TabNavigation: React.FC<TabNavigationProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className="border-b border-gray-200">
       <nav className="flex -mb-px space-x-8">
