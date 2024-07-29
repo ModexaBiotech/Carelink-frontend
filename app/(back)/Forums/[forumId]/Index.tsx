@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
@@ -27,6 +27,15 @@ const forumData = {
 const ForumDetailPage: React.FC = () => {
   const router = useRouter();
   const { forumId } = router.query;
+  const [notifications, setNotifications] = useState([]);
+  const [loginInfo, setLoginInfo] = useState({
+    loginAs: "Dr. Lorant Amo Kodieh",
+    userType: "Physician",
+    organization: "Modexa Biotech",
+    loginTime: "2024-07-27T10:00:00Z",
+    lastLogin: "2024-07-26T15:30:00Z"
+  });
+
 
   if (!forumId || typeof forumId !== 'string') {
     return <div>Forum not found</div>;
@@ -53,7 +62,7 @@ const ForumDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <RightSidebar />
+      <RightSidebar notifications={notifications}  loginInfo={loginInfo} />
     </div>
   );
 };
