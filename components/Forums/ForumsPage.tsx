@@ -3,6 +3,7 @@
 import React from 'react';
 import ForumCard from './ForumCard';
 import { useAppState } from './useAppState';
+import Image from 'next/image';
 
 const ForumsPage: React.FC = () => {
   const { setCurrentForumId } = useAppState();
@@ -16,7 +17,7 @@ const ForumsPage: React.FC = () => {
       <div className="mb-8 text-center">
         <h1 className="text-4xl font-bold">Explore Forums</h1>
         <div className="relative mt-8 mx-4">
-          <img
+          <Image
             src="/hannah-busing-Zyx1bK9mqmA-unsplash.jpg"
             alt="Find your Community"
             className="w-full h-80 object-cover rounded-lg"
@@ -24,17 +25,17 @@ const ForumsPage: React.FC = () => {
           <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-60 text-white p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-2">Find your Community</h2>
             <div className="flex mt-4 space-x-2">
-              <img
+              <Image
                 src="/laura-college-K_Na5gCmh38-unsplash.jpg"
                 alt="Member 1"
                 className="w-10 h-10 rounded-full"
               />
-              <img
+              <Image
                 src="/meditation.avif"
                 alt="Member 2"
                 className="w-10 h-10 rounded-full"
               />
-              <img
+              <Image
                 src="/dental.avif"
                 alt="Member 3"
                 className="w-10 h-10 rounded-full"

@@ -541,8 +541,9 @@ const EHRPage = () => {
                 <SearchResults query={query} results={results} onPatientClick={handlePatientClick} />
               </div>
             ) : (
-              //<PatientDetails patient={selectedPatient} onBack={() => setSelectedPatient(null)} />
+
               <h1>Hello</h1>
+              // <PatientDetails patient={selectedPatient} onBack={() => setSelectedPatient(null)} />
             )}
           </div>
         </div>

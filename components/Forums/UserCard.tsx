@@ -5,6 +5,7 @@ import { FaArrowUp, FaArrowDown, FaRegComment, FaShare, FaBookmark, FaFlag, FaTr
 import CommentSection from './CommentSection';
 import { generateInitials } from './utils'; // Import the utility function
 import { CommentProps } from '@/types/types'; // Import CommentProps
+import Image from 'next/image';
 
 interface UserCardProps {
   username: string;
@@ -103,7 +104,7 @@ const UserCard: React.FC<UserCardProps> = ({
         </div>
       </div>
       <p className="mb-4 text-gray-800">{content}</p>
-      {image && <img src={image} alt="Post" className="w-full rounded-lg mb-4" />}
+      {image && <Image src={image} alt="Post" className="w-full rounded-lg mb-4" />}
       <div className="flex items-center justify-between text-gray-500">
         <div className="flex items-center space-x-2">
           <button

@@ -6,6 +6,7 @@ import { FaArrowLeft, FaImage, FaTimes, FaPlus } from 'react-icons/fa';
 import UserCard from './UserCard';
 import Modal from 'react-modal';
 import { CommentProps } from '@/types/types'; // Import CommentProps
+import Image from 'next/image';
 
 const forumData = {
   "male-fertility": {
@@ -163,7 +164,7 @@ const ForumDetailPage = () => {
       </button>
       <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full mb-6">
         <div className="relative">
-          <img src={forum.image} alt={forum.title} className="w-full h-96 object-cover rounded-t-lg" /> 
+          <Image src={forum.image} alt={forum.title} className="w-full h-96 object-cover rounded-t-lg" /> 
           <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white p-4 rounded-t-lg">
             <h1 className="text-4xl font-bold">{forum.title}</h1>
             <p className="text-lg mt-2">{forum.description}</p>
