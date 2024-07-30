@@ -68,7 +68,7 @@ const MedicalSessions = () => {
   return (
     <div className="flex h-screen">
       <Sidebar onCollapseChange={handleCollapseChange} />
-      <div className={`flex-1 flex flex-col bg-gray-100 overflow-hidden transition-all duration-300 ${isSidebarCollapsed ? 'ml-16' : 'ml-48'}`}>
+      <div className={`flex-1 flex flex-col bg-gray-100 overflow-hidden transition-all duration-300 ${isSidebarCollapsed ? 'ml-16' : 'ml-20'}`}>
         <Navbar />
         <div className="flex-1 flex p-6 space-x-6 overflow-auto">
           <div className="flex-1 max-w-full lg:max-w-3xl xl:max-w-4xl space-y-6">

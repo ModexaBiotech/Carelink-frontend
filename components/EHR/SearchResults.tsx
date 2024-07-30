@@ -15,7 +15,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, onPatient
   const bestMatches = filteredResults.slice(0, 10);
 
   return (
-    <div className="mt-8 mx-auto w-full max-w-6xl px-4"> {/* Adjusted max width and padding */}
+    <div className="mt-8 mx-auto w-full max-w-6xl px-4"> 
       {query ? (
         <>
           <h2 className="text-2xl font-semibold mb-4">Results</h2>

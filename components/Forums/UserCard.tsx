@@ -11,7 +11,11 @@ interface UserCardProps {
   username: string;
   userProfileImage?: string; // Made userProfileImage optional
   content: string;
-  image?: string;
+  image?: {
+    src: string;
+    width: number;
+    height: number;
+  };
   comments: CommentProps[];
   postId: string;
   onAddComment: (postId: string, comment: string, parentCommentId?: string) => Promise<void>;
@@ -22,6 +26,7 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({
   username,
+  userProfileImage,
   content,
   image,
   comments,
@@ -39,31 +44,15 @@ const UserCard: React.FC<UserCardProps> = ({
   const [flagged, setFlagged] = useState(false);
 
   const handleUpvote = () => {
-    if (upvoted) {
-      setVotes(votes - 1);
-      setUpvoted(false);
-    } else {
-      setVotes(votes + 1);
-      if (downvoted) {
-        setVotes(votes + 1);
-        setDownvoted(false);
-      }
-      setUpvoted(true);
-    }
+    setVotes(prevVotes => upvoted ? prevVotes - 1 : (downvoted ? prevVotes + 2 : prevVotes + 1));
+    setUpvoted(!upvoted);
+    if (downvoted) setDownvoted(false);
   };
 
   const handleDownvote = () => {
-    if (downvoted) {
-      setVotes(votes + 1);
-      setDownvoted(false);
-    } else {
-      setVotes(votes - 1);
-      if (upvoted) {
-        setVotes(votes - 1);
-        setUpvoted(false);
-      }
-      setDownvoted(true);
-    }
+    setVotes(prevVotes => downvoted ? prevVotes + 1 : (upvoted ? prevVotes - 2 : prevVotes - 1));
+    setDownvoted(!downvoted);
+    if (upvoted) setUpvoted(false);
   };
 
   const handleShare = () => {
@@ -95,7 +84,17 @@ const UserCard: React.FC<UserCardProps> = ({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <div className="w-12 h-12 rounded-full mr-4 bg-gray-300 flex items-center justify-center text-xl font-bold text-gray-700">
-            {generateInitials(username)}
+            {userProfileImage ? (
+              <Image
+                src={userProfileImage}
+                alt={username}
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+            ) : (
+              generateInitials(username)
+            )}
           </div>
           <div>
             <h3 className="font-bold text-lg">{username}</h3>
@@ -104,7 +103,15 @@ const UserCard: React.FC<UserCardProps> = ({
         </div>
       </div>
       <p className="mb-4 text-gray-800">{content}</p>
-      {image && <Image src={image} alt="Post" className="w-full rounded-lg mb-4" />}
+      {image && (
+        <Image
+          src={image.src}
+          alt="Post"
+          width={image.width}
+          height={image.height}
+          className="w-full rounded-lg mb-4"
+        />
+      )}
       <div className="flex items-center justify-between text-gray-500">
         <div className="flex items-center space-x-2">
           <button

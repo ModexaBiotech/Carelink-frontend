@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
-
 interface Test {
   testType: string;
   testName?: string;
@@ -47,7 +46,7 @@ const AddTestsPopup: React.FC<AddTestsPopupProps> = ({ tests, onSave, onClose })
       ...currentTests,
       {
         testType: '',
-        date: new Date().toISOString().split('T')[0], 
+        date: new Date().toISOString().split('T')[0],
       },
     ]);
   };
@@ -140,28 +139,83 @@ const AddTestsPopup: React.FC<AddTestsPopupProps> = ({ tests, onSave, onClose })
     } else if (testName === 'Urine Dipstick') {
       return (
         <>
-          <input type="text" name="appearance" placeholder="Appearance" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'appearance', e.target.value)} />
-          <input type="text" name="color" placeholder="Color" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'color', e.target.value)} />
-          <input type="text" name="ph" placeholder="pH" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'ph', e.target.value)} />
-          <input type="text" name="specificGravity" placeholder="Specific Gravity" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'specificGravity', e.target.value)} />
-          <input type="text" name="glucose" placeholder="Glucose" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'glucose', e.target.value)} />
-          <input type="text" name="ketones" placeholder="Ketones" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'ketones', e.target.value)} />
-          <input type="text" name="protein" placeholder="Protein" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'protein', e.target.value)} />
-          <input type="text" name="leukocytes" placeholder="Leukocytes" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'leukocytes', e.target.value)} />
-          <input type="text" name="nitrites" placeholder="Nitrites" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'nitrites', e.target.value)} />
-          <input type="text" name="bilirubin" placeholder="Bilirubin" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'bilirubin', e.target.value)} />
-          <input type="text" name="urobilirubin" placeholder="Urobilirubin" className="p-2 border rounded w-full mt-2"
-            onChange={(e) => handleInputChange(currentTests.length - 1, 'urobilirubin', e.target.value)} />
+          <input
+            type="text"
+            name="appearance"
+            placeholder="Appearance"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'appearance', e.target.value)}
+          />
+          <input
+            type="text"
+            name="color"
+            placeholder="Color"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'color', e.target.value)}
+          />
+          <input
+            type="text"
+            name="ph"
+            placeholder="pH"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'ph', e.target.value)}
+          />
+          <input
+            type="text"
+            name="specificGravity"
+            placeholder="Specific Gravity"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'specificGravity', e.target.value)}
+          />
+          <input
+            type="text"
+            name="glucose"
+            placeholder="Glucose"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'glucose', e.target.value)}
+          />
+          <input
+            type="text"
+            name="ketones"
+            placeholder="Ketones"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'ketones', e.target.value)}
+          />
+          <input
+            type="text"
+            name="protein"
+            placeholder="Protein"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'protein', e.target.value)}
+          />
+          <input
+            type="text"
+            name="leukocytes"
+            placeholder="Leukocytes"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'leukocytes', e.target.value)}
+          />
+          <input
+            type="text"
+            name="nitrites"
+            placeholder="Nitrites"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'nitrites', e.target.value)}
+          />
+          <input
+            type="text"
+            name="bilirubin"
+            placeholder="Bilirubin"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'bilirubin', e.target.value)}
+          />
+          <input
+            type="text"
+            name="urobilirubin"
+            placeholder="Urobilirubin"
+            className="p-2 border rounded w-full mt-2"
+            onChange={(e) => handleInputChange(currentTests.length - 1, 'urobilirubin', e.target.value)}
+          />
         </>
       );
     }
@@ -190,35 +244,51 @@ const AddTestsPopup: React.FC<AddTestsPopupProps> = ({ tests, onSave, onClose })
               {currentTests.map((test, index) => (
                 <div key={index} className="border p-4 mt-4 rounded fade-in">
                   <div className="grid grid-cols-1 gap-4">
-                    <input
-                      type="date"
-                      name="date"
-                      value={test.date}
-                      onChange={(e) => handleInputChange(index, 'date', e.target.value)}
-                      className="p-2 border rounded"
-                    />
-                    <select
-                      name="testType"
-                      value={test.testType}
-                      onChange={(e) => handleInputChange(index, 'testType', e.target.value)}
-                      className="p-2 border rounded"
-                    >
-                      <option value="">Select Test Procedure</option>
-                      <option value="RDT">RDT</option>
-                      <option value="Others">Others</option>
-                    </select>
-                    {test.testType && (
+                    <label className="block">
+                      <span className="text-gray-700">Date</span>
+                      <input
+                        type="date"
+                        name="date"
+                        value={test.date}
+                        onChange={(e) => handleInputChange(index, 'date', e.target.value)}
+                        className="p-2 border rounded mt-1 w-full"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-gray-700">Test Procedure</span>
                       <select
-                        name="testName"
-                        value={test.testName || ''}
-                        onChange={(e) => handleInputChange(index, 'testName', e.target.value)}
-                        className="p-2 border rounded"
+                        name="testType"
+                        value={test.testType}
+                        onChange={(e) => handleInputChange(index, 'testType', e.target.value)}
+                        className="p-2 border rounded mt-1 w-full"
                       >
-                        <option value="">Select Test Name</option>
-                        {renderTestSubTypeOptions(test.testType)}
+                        <option value="">Select Test Procedure</option>
+                        <option value="RDT">RDT</option>
+                        <option value="Others">Others</option>
                       </select>
+                    </label>
+                    {test.testType && (
+                      <label className="block">
+                        <span className="text-gray-700">Test Name</span>
+                        <select
+                          name="testName"
+                          value={test.testName || ''}
+                          onChange={(e) => handleInputChange(index, 'testName', e.target.value)}
+                          className="p-2 border rounded mt-1 w-full"
+                        >
+                          <option value="">Select Test Name</option>
+                          {renderTestSubTypeOptions(test.testType)}
+                        </select>
+                      </label>
                     )}
-                    {test.testName && renderTestResultOptions(test.testName)}
+                    {test.testName && (
+                      <>
+                        <label className="block mt-2">
+                          <span className="text-gray-700">Test Result</span>
+                          {renderTestResultOptions(test.testName)}
+                        </label>
+                      </>
+                    )}
                     <button
                       onClick={() => handleDeleteTest(index)}
                       className="bg-red-500 text-white p-2 rounded mt-2"

@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { useAppState } from './useAppState';
-import { FaArrowLeft, FaImage, FaTimes, FaPlus } from 'react-icons/fa';
+import { FaArrowLeft, FaPlus } from 'react-icons/fa';
 import UserCard from './UserCard';
-import Modal from 'react-modal';
 import { CommentProps } from '@/types/types'; 
 import Image from 'next/image';
+import CreatePostModal from './CreatePostModal'; 
 
 const forumData = {
   "male-fertility": {
@@ -53,13 +53,11 @@ const forumData = {
   },
 };
 
-const currentUser = "Current User"; // Simulation of curent user
+const currentUser = "Current User"; // Simulation of current user
 
 const ForumDetailPage = () => {
   const { currentForumId, setCurrentForumId } = useAppState();
-  const [comments, setComments] = useState<{
-    [key: string]: CommentProps[]
-  }>({
+  const [comments, setComments] = useState<{ [key: string]: CommentProps[] }>({
     "post1": [
       { username: "User A", comment: "Comment 1 on post 1", userProfileImage: "/avatar1.jpg" },
       { username: "User B", comment: "Comment 2 on post 1", userProfileImage: "/avatar2.jpg" }
@@ -88,8 +86,8 @@ const ForumDetailPage = () => {
     setCurrentForumId(null); // Redirect to forum list after deleting a post
   };
 
-  const handleCreatePost = async () => {
-    if (!newPostContent.trim() && !newPostImage) {
+  const handleCreatePost = async (content: string, image: File | null, anonymously: boolean) => {
+    if (!content.trim() && !image) {
       alert('Please add content or an image to your post.');
       return;
     }
@@ -100,12 +98,12 @@ const ForumDetailPage = () => {
       const newPostId = `post${Object.keys(comments).length + 1}`;
 
       const newPost: { username: string; content: string; image?: string; comments: CommentProps[] } = {
-        username: currentUser,
-        content: newPostContent,
+        username: anonymously ? 'Anonymous' : currentUser,
+        content: content,
         comments: []
       };
 
-      if (newPostImage) {
+      if (image) {
         const reader = new FileReader();
         reader.onloadend = () => {
           newPost.image = reader.result as string;
@@ -114,7 +112,7 @@ const ForumDetailPage = () => {
             [newPostId]: []
           });
         };
-        reader.readAsDataURL(newPostImage);
+        reader.readAsDataURL(image);
       } else {
         setComments({
           ...comments,
@@ -164,7 +162,13 @@ const ForumDetailPage = () => {
       </button>
       <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full mb-6">
         <div className="relative">
-          <Image src={forum.image} alt={forum.title} className="w-full h-96 object-cover rounded-t-lg" /> 
+          <Image
+            src={forum.image}
+            alt={forum.title}
+            width={1200} 
+            height={600} 
+            className="w-full h-96 object-cover rounded-t-lg"
+          /> 
           <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white p-4 rounded-t-lg">
             <h1 className="text-4xl font-bold">{forum.title}</h1>
             <p className="text-lg mt-2">{forum.description}</p>
@@ -181,56 +185,23 @@ const ForumDetailPage = () => {
             <FaPlus className="text-2xl" />
           </button>
 
-           {/* Modal for Creating a Post */}
-           <Modal
-            isOpen={isModalOpen}
-            onRequestClose={closeModal}
-            contentLabel="Create a Post"
-            className="flex items-center justify-center min-h-screen"
-            overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center"
-            ariaHideApp={false}
-          >
-            <div className="relative bg-white rounded-lg shadow-lg p-6 w-full max-w-lg mx-auto">
-              <button
-                onClick={closeModal}
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition duration-300"
-                aria-label="Close modal"
-              >
-                <FaTimes className="text-2xl" />
-              </button>
-              <h2 className="text-2xl font-bold mb-4">Create a Post</h2>
-              <textarea
-                value={newPostContent}
-                onChange={(e) => setNewPostContent(e.target.value)}
-                placeholder="What's on your mind?"
-                className="w-full p-2 border border-gray-300 rounded-lg mb-2"
-                rows={4}
-              />
-              <label htmlFor="file-upload" className="cursor-pointer bg-green-600 hover:bg-green-800 transition duration-300 p-2 rounded-lg mb-2 flex items-center">
-                <FaImage className="text-xl mr-2" />
-                Choose an image
-              </label>
-              <input
-                id="file-upload"
-                type="file"
-                onChange={(e) => setNewPostImage(e.target.files ? e.target.files[0] : null)}
-                className="hidden"
-              />
-              <button
-                onClick={handleCreatePost}
-                className="w-full p-2 bg-blue text-white rounded-lg hover:bg-blue-600 transition duration-300"
-                disabled={isSubmittingPost}
-              >
-                {isSubmittingPost ? 'Posting...' : 'Post'}
-              </button>
-            </div>
-          </Modal>
+          {/* Modal for Creating a Post */}
+          <CreatePostModal
+            isModalOpen={isModalOpen}
+            closeModal={closeModal}
+            handleCreatePost={handleCreatePost}
+            isSubmittingPost={isSubmittingPost}
+          />
 
           {/* Existing Posts */}
           <UserCard
             username="User X"
             content="Lorem ipsum shsc jsnss sjsksj loren skdndd dsjdc ckjhd kdvv?"
-            image="/post-image1.jpg"
+            image={{
+              src: "/Diabetes-gangrene-1.jpg",
+              width: 800, 
+              height: 600 
+            }}
             comments={comments["post1"]}
             postId="post1"
             onAddComment={handleAddComment}

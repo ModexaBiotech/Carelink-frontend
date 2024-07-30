@@ -70,7 +70,7 @@ const LabOrderForm: React.FC<LabOrderFormProps> = ({ labOrders, onSave }) => {
     'Whole Blood': ['CBC', 'BF for Malaria', 'Blood Glucose', 'BF for malaria', 'Blood Film Comment', 'Lipid Panel'],
     'Plasma': ['Electrolytes', 'Hormone Levels'],
     'Serum': ['Liver Function Tests', 'Kidney Function Tests'],
-    'Urine': ['Urinalysis', 'Urine Culture'],
+    'Urine': ['Urinalysis', 'Urine Culture', 'UPT'],
     'Stool': ['Stool Analysis', 'Stool Culture', 'H-Pylori'],
     'Sputum': ['Sputum Culture', 'Acid-Fast Bacillus (AFB) test', 'Gene Xpert'],
     'N/A': ['MRI', 'CT Scan', 'X-ray', 'Ultrasound'],
@@ -91,75 +91,97 @@ const LabOrderForm: React.FC<LabOrderFormProps> = ({ labOrders, onSave }) => {
         <div className="p-4">
           {currentLabOrders.map((labOrder, index) => (
             <div key={index} className="border p-4 mt-4 rounded">
+              <h3 className="text-lg font-semibold mb-2">Lab Order {index + 1}</h3>
               <div className="grid grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="orderingPhysician"
-                  placeholder="Ordering Physician"
-                  value={labOrder.orderingPhysician}
-                  readOnly
-                  className="p-2 border rounded bg-gray-100"
-                />
-                <input
-                  type="date"
-                  name="orderDate"
-                  value={labOrder.orderDate}
-                  readOnly
-                  className="p-2 border rounded bg-gray-100"
-                />
-                <select
-                  name="priority"
-                  value={labOrder.priority}
-                  onChange={(e) => handleInputChange(index, 'priority', e.target.value)}
-                  className="p-2 border rounded"
-                >
-                  <option value="">Select Priority</option>
-                  <option value="Routine">Routine</option>
-                  <option value="Urgent">Urgent</option>
-                  <option value="Stat">Stat</option>
-                </select>
-                <select
-                  name="specimen"
-                  value={labOrder.specimen}
-                  onChange={(e) => handleInputChange(index, 'specimen', e.target.value)}
-                  className="p-2 border rounded"
-                >
-                  <option value="">Select Specimen Type</option>
-                  <option value="Whole Blood">Whole Blood</option>
-                  <option value="Plasma">Plasma</option>
-                  <option value="Serum">Serum</option>
-                  <option value="Urine">Urine</option>
-                  <option value="Stool">Stool</option>
-                  <option value="Sputum">Sputum</option>
-                  <option value="N/A">N/A</option>
-                </select>
-                <select
-                  name="testName"
-                  value={labOrder.testName}
-                  onChange={(e) => handleInputChange(index, 'testName', e.target.value)}
-                  className="p-2 border rounded"
-                  disabled={!labOrder.specimen}
-                >
-                  <option value="">Select Test Category</option>
-                  {labOrder.specimen && testCategories[labOrder.specimen]?.map((test) => (
-                    <option key={test} value={test}>{test}</option>
-                  ))}
-                </select>
-                <input
-                  type="text"
-                  name="diagnosis"
-                  placeholder="Diagnosis or Reason for Test"
-                  value={labOrder.diagnosis}
-                  onChange={(e) => handleInputChange(index, 'diagnosis', e.target.value)}
-                  className="p-2 border rounded"
-                />
-                <textarea
-                  name="instructions"
-                  placeholder="Special Instructions"
-                  value={labOrder.instructions}
-                  onChange={(e) => handleInputChange(index, 'instructions', e.target.value)}
-                  className="p-2 border rounded col-span-2"
-                />
+                <div className="flex flex-col">
+                  <label className="text-gray-600">Ordering Physician</label>
+                  <input
+                    type="text"
+                    name="orderingPhysician"
+                    placeholder="Ordering Physician"
+                    value={labOrder.orderingPhysician}
+                    readOnly
+                    className="p-2 border rounded bg-gray-100"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-gray-600">Order Date</label>
+                  <input
+                    type="date"
+                    name="orderDate"
+                    value={labOrder.orderDate}
+                    readOnly
+                    className="p-2 border rounded bg-gray-100"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-gray-600">Priority</label>
+                  <select
+                    name="priority"
+                    value={labOrder.priority}
+                    onChange={(e) => handleInputChange(index, 'priority', e.target.value)}
+                    className="p-2 border rounded"
+                  >
+                    <option value="">Select Priority</option>
+                    <option value="Routine">Routine</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Stat">Stat</option>
+                  </select>
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-gray-600">Specimen Type</label>
+                  <select
+                    name="specimen"
+                    value={labOrder.specimen}
+                    onChange={(e) => handleInputChange(index, 'specimen', e.target.value)}
+                    className="p-2 border rounded"
+                  >
+                    <option value="">Select Specimen Type</option>
+                    <option value="Whole Blood">Whole Blood</option>
+                    <option value="Plasma">Plasma</option>
+                    <option value="Serum">Serum</option>
+                    <option value="Urine">Urine</option>
+                    <option value="Stool">Stool</option>
+                    <option value="Sputum">Sputum</option>
+                    <option value="N/A">N/A</option>
+                  </select>
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-gray-600">Test Name</label>
+                  <select
+                    name="testName"
+                    value={labOrder.testName}
+                    onChange={(e) => handleInputChange(index, 'testName', e.target.value)}
+                    className="p-2 border rounded"
+                    disabled={!labOrder.specimen}
+                  >
+                    <option value="">Select Test Category</option>
+                    {labOrder.specimen && testCategories[labOrder.specimen]?.map((test) => (
+                      <option key={test} value={test}>{test}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-gray-600">Diagnosis</label>
+                  <input
+                    type="text"
+                    name="diagnosis"
+                    placeholder="Diagnosis or Reason for Test"
+                    value={labOrder.diagnosis}
+                    onChange={(e) => handleInputChange(index, 'diagnosis', e.target.value)}
+                    className="p-2 border rounded"
+                  />
+                </div>
+                <div className="flex flex-col col-span-2">
+                  <label className="text-gray-600">Special Instructions</label>
+                  <textarea
+                    name="instructions"
+                    placeholder="Special Instructions"
+                    value={labOrder.instructions}
+                    onChange={(e) => handleInputChange(index, 'instructions', e.target.value)}
+                    className="p-2 border rounded"
+                  />
+                </div>
               </div>
               <button
                 onClick={() => handleDeleteLabOrder(index)}

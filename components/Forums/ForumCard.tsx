@@ -1,7 +1,4 @@
-"use client";
-
 import React from 'react';
-import { useAppState } from './useAppState';
 import Image from 'next/image';
 
 interface ForumCardProps {
@@ -11,20 +8,21 @@ interface ForumCardProps {
   members: string;
   image: string;
   description: string;
+  onClick: () => void;
 }
 
-const ForumCard: React.FC<ForumCardProps> = ({ id, title, posts, members, image, description }) => {
-  const { setCurrentForumId } = useAppState();
-
+const ForumCard: React.FC<ForumCardProps> = ({ id, title, posts, members, image, description, onClick }) => {
   return (
     <div 
-      onClick={() => setCurrentForumId(id)} 
+      onClick={onClick} 
       className="cursor-pointer w-full h-60 border border-gray-200 rounded-lg overflow-hidden text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
     >
       <div className="relative h-full">
         <Image 
           src={image} 
           alt={title} 
+          width={300} 
+          height={240} 
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">

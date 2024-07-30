@@ -103,7 +103,7 @@ const SessionsPageContent: React.FC = () => {
           {currentView === 'patientDetails' && (
             <PatientDetailsPage 
               onBack={() => setCurrentView('sessions')} // Go back to search
-              onProceed={() => setCurrentView('medicalSessionDetails')} // Move forward
+              onProceed={() => setCurrentView('medicalSessionDetails')} 
             />
           )}
           {currentView === 'medicalSessionDetails' && (

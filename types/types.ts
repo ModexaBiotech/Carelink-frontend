@@ -145,3 +145,12 @@ export interface RegisterInputProps {
   confirmPassword: string;
   role?: string;
 }
+
+export interface Forum {
+  id: string;
+  title: string;
+  posts: string;
+  members: string;
+  image: { src: string; width: number; height: number };
+  description: string;
+}
